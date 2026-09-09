@@ -9,6 +9,20 @@ import {
   type BudgetFormData,
 } from "@/lib/validations";
 
+declare global {
+  interface Window {
+    gtag: (
+      command: string,
+      eventName: string,
+      params?: {
+        send_to?: string;
+        value?: number;
+        currency?: string;
+      }
+    ) => void;
+  }
+}
+
 export default function BudgetForm() {
   const [success, setSuccess] = useState(false);
   const [apiError, setApiError] = useState("");
@@ -21,6 +35,23 @@ export default function BudgetForm() {
   } = useForm<BudgetFormData>({
     resolver: zodResolver(budgetSchema),
   });
+
+  function gtagReportConversion() {
+  if (typeof window === "undefined") return;
+
+  const gtag = window.gtag;
+
+  if (!gtag) {
+    console.warn("Google Ads não carregado.");
+    return;
+  }
+
+  gtag("event", "conversion", {
+    send_to: "AW-18440812369/irgmCOHxrfIcENHuodlE",
+    value: 1.0,
+    currency: "BRL",
+  });
+}
 
   async function onSubmit(data: BudgetFormData) {
     setApiError("");
@@ -43,6 +74,8 @@ export default function BudgetForm() {
         );
       }
 
+      // ✅ Conversão registrada no Google Ads
+      gtagReportConversion();
       setSuccess(true);
       reset();
     } catch (error) {
