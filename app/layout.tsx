@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Lucas Oliveira",
-  metadataBase: new URL("https://seudominio.com.br"),
+  metadataBase: new URL("https://freelancer-gamma-ashy.vercel.app"),
   openGraph: {
     title: "Lucas Oliveira | Desenvolvedor Full-Stack",
     description:
