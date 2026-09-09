@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f3ed;
+  --foreground: #111111;
+  --primary: #e4a88f;
+  --yellow: #ffd84d;
+  --blue: #8ec5ff;
+  --green: #a7e8bd;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #000;
+  color: #fff;
+}
+
+.neo {
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+}
+
+.neo-small {
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0 #000;
+}
+
+.neo-button {
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.15s ease;
+}
+
+.neo-button:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.neo-button:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 #000;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(#00000010 1px, transparent 1px),
+    linear-gradient(90deg, #00000010 1px, transparent 1px);
+  background-size: 30px 30px;
 }
